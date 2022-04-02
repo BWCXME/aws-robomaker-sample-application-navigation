@@ -42,6 +42,7 @@ fi
 
 set -e
 
+echo "build simulation and define local setup"
 cd simulation_ws
 colcon build
 source install/local_setup.sh
@@ -49,20 +50,25 @@ cd ..
 
 map_output_path=$(dirname $(dirname $world_source_path))/maps/map
 
+echo "roslaunch navigation_simulation start_map_service.launch &"
 roslaunch navigation_simulation start_map_service.launch &
 
+echo "wait /gazebo_2Dmap_plugin/generate_map"
 python << END
 import rospy
 
 rospy.wait_for_service('/gazebo_2Dmap_plugin/generate_map')
 END
 
+echo "rosservice call /gazebo_2Dmap_plugin/generate_map"
 rosservice call /gazebo_2Dmap_plugin/generate_map
 rosrun map_server map_saver -f $map_output_path /map:=/map2d
 
+echo "build simulation"
 cd simulation_ws
 colcon build
 
+echo "kill"
 kill $!
 
 echo "--- Map file generated at $map_output_path"
