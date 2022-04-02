@@ -25,7 +25,7 @@ sudo apt-get install ruby-dev libxml-xpath-perl libxml2-utils
 
 cd simulation_ws
 sudo vcs import < .rosinstall
-sudo rosdep install --from-paths src --ignore-src -r -y
+sudo rosdep install --from-paths src --ignore-src -r -y --rosdistro ${ROS_DISTRO}
 cd ..
 
 set +e
