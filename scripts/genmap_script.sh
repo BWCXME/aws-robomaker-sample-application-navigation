@@ -24,8 +24,8 @@ echo "Sudo password may be needed to install system dependencies"
 sudo apt-get install ruby-dev libxml-xpath-perl libxml2-utils
 
 cd simulation_ws
-vcs import < .rosinstall
-rosdep install --from-paths src --ignore-src -r -y
+sudo vcs import < .rosinstall
+sudo rosdep install --from-paths src --ignore-src -r -y
 cd ..
 
 set +e
