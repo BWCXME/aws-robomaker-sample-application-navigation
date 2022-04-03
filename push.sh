@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROBOT_APP=robomaker-navigation-robot-app
-SIM_APP=robomaker-navigation-sim-app
+# ROBOT_APP=robomaker-navigation-robot-app
+# SIM_APP=robomaker-navigation-sim-app
 
 build=$1
 
