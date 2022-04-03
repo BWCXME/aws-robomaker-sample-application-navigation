@@ -1,0 +1,56 @@
+{
+    "maxJobDurationInSeconds": 3600,
+    "iamRole": "角色ARN, 例如arn:aws:iam::<account-id>:role/service-role/robomaker-simulation-role" ,
+    "robotApplications": [
+        {
+            "application": "机器人程序ARN, 例如arn:aws:robomaker:ap-southeast-1:<account-id>:robot-application/robomaker-navigation-robot-app/1648881306581",
+            "applicationVersion": "$LATEST",
+            "launchConfig": {
+                "environmentVariables": {
+                    "ROS_IP": "ROBOMAKER_ROBOT_APP_IP",
+                    "ROS_MASTER_URI": "http://ROBOMAKER_ROBOT_APP_IP:11311",
+                    "GAZEBO_MASTER_URI": "http://ROBOMAKER_SIM_APP_IP:11345"
+                },
+                "streamUI": false,
+                "command": [
+                    "roslaunch", "hello_world_robot", "rotate.launch"
+                ]
+            },
+            "tools": [
+                {
+                    "streamUI": true,
+                    "name": "robot-terminal",
+                    "command": "/entrypoint.sh && xfce4-terminal",
+                    "streamOutputToCloudWatch": true,
+                    "exitBehavior": "RESTART"
+                }
+            ]
+        }
+    ],
+    "simulationApplications": [
+        {
+            "application": "仿真应用ARN, 例如arn:aws:robomaker:ap-southeast-1:<account-id>:simulation-application/robomaker-navigation-sim-app/1648881317919",
+            "launchConfig": {
+                "environmentVariables": {
+                  "ROS_IP": "ROBOMAKER_SIM_APP_IP",
+                  "ROS_MASTER_URI": "http://ROBOMAKER_ROBOT_APP_IP:11311",
+                  "GAZEBO_MASTER_URI": "http://ROBOMAKER_SIM_APP_IP:11345",
+                  "TURTLEBOT3_MODEL":"waffle_pi"
+                },
+                "streamUI": true,
+                "command": [
+                    "roslaunch", "hello_world_simulation", "empty_world.launch"
+                ]
+            },
+            "tools": [
+                {
+                    "streamUI": true,
+                    "name": "gzclient",
+                    "command": "/entrypoint.sh && gzclient",
+                    "streamOutputToCloudWatch": true,
+                    "exitBehavior": "RESTART"
+                }
+            ]
+        }
+    ]
+}
