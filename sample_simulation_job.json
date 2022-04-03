@@ -3,7 +3,7 @@
     "iamRole": "角色ARN, 例如arn:aws:iam::<account-id>:role/service-role/robomaker-simulation-role" ,
     "robotApplications": [
         {
-            "application": "机器人程序ARN, 例如arn:aws:robomaker:ap-southeast-1:<account-id>:robot-application/robomaker-navigation-robot-app/1648881306581",
+            "application": "机器人应用ARN, 例如arn:aws:robomaker:ap-southeast-1:<account-id>:robot-application/robomaker-navigation-robot-app/1648881306581",
             "applicationVersion": "$LATEST",
             "launchConfig": {
                 "environmentVariables": {
