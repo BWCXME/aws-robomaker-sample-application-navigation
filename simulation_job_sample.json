@@ -13,7 +13,7 @@
                 },
                 "streamUI": false,
                 "command": [
-                    "roslaunch", "hello_world_robot", "rotate.launch"
+                    "roslaunch", "navigation_robot", "rotate.launch"
                 ]
             },
             "tools": [
@@ -39,7 +39,7 @@
                 },
                 "streamUI": true,
                 "command": [
-                    "roslaunch", "hello_world_simulation", "empty_world.launch"
+                    "roslaunch", "navigation_simulation", "empty_world.launch"
                 ]
             },
             "tools": [
